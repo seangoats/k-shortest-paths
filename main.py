@@ -8,8 +8,11 @@ import networkx
 print("Testing on a randomly generated graph: ")
 test_nodes = int(input("Enter the number of nodes: "))
 # test = gnp_random_connected_graph(test_nodes,0.00001)
-test = nx.erdos_renyi_graph(test_nodes,0.01)
+test = nx.erdos_renyi_graph(test_nodes,1/test_nodes)
 test = nx.to_dict_of_lists(test)
+
+graph = open('graph.txt','w')
+graph.write(str(test))
 
 no_of_hospitals = int(input("Enter the number of hospitals: "))
 test_hospitals = random.sample(range(0,test_nodes), no_of_hospitals)
@@ -21,9 +24,15 @@ k = int(input(f"Enter the k value: "))
 filename = input("Enter the output file name for k shortest paths: ")
 BFS2(test,test_hospitals,k,filename)
 
+##test on sample of 10 graphs
+# test = {0:[1,2],1:[0,7,8],2:[0,7,3],3:[2,5,6],4:[],5:[3,8],6:[3],7:[1,2],8:[1,5],9:[10],10:[9]}
+# BFS(test,[3,5,6],'test')
+# BFS2(test,[3,5,6],2,'test2')
+
+
 
 #test on a road network
-test_on_road = input("Test on a road network? [Y/n]")
+test_on_road = input("Test on a road network? [Y/n] ")
 
 if(test_on_road.lower() == "y"):
 
