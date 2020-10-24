@@ -20,7 +20,7 @@ def BFS(graph,hospitals,filename):
         queue.appendleft(node)
         
 
-    while queue:
+    while queue: #O(n+m)
         vertex = queue.pop()
         
         for neighbour in graph[vertex]:
@@ -39,7 +39,7 @@ def BFS(graph,hospitals,filename):
         output.write(f"{node} : {shortest_path}\n")
     print(f"Output can be found in {filename}.txt")
     print("Ending...\n")
-
+#Time complexity = O(n+m)
 
 
 #can use random generated adjlist as graph input
@@ -56,9 +56,10 @@ def BFS2(graph,hospitals,k,filename):
     #Create the queue, visited set and a dictionary to store distances, initialized to 0
     queue = collections.deque()
     visited = set()
-    path = {key:[0 for i in range(len(hospitals))] for key in graph.keys()}
+    initializer = [0 for i in range(len(hospitals))]
+    path = {key:initializer for key in graph.keys()}
         
-    for i in range(len(hospitals)):
+    for i in range(len(hospitals)): #O(h)*O(n+m) = O(hn+hm)
         visited.add(hospitals[i])
         queue.appendleft(hospitals[i])
         while queue:
@@ -81,4 +82,5 @@ def BFS2(graph,hospitals,k,filename):
         output.write(f"{node} : {sorted(shortest_path)[0:k]}\n")
     print(f"Output can be found in {filename}.txt")
     print("Ending...\n")
-                
+
+#Total time complexity = O(hn+hm)
