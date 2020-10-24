@@ -9,7 +9,7 @@
 
 In Windows:
 ```winbatch
-C:\filepath> python main.py
+C:\filepath > python main.py
 ```
 
 In macOS/Linux
