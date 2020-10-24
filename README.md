@@ -6,9 +6,13 @@
 
 3. Run main.py
 
-```console
+
+In Windows:
+```winbatch
 C:\filepath> python main.py
+```
 
+In macOS/Linux
+```bash
 $ python main.py
-
 ```
