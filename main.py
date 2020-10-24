@@ -2,11 +2,13 @@ from myfuncs import *
 from algos import *
 import time
 import random
+import networkx
 
 #test on a randomly generated node
 print("Testing on a randomly generated graph: ")
 test_nodes = int(input("Enter the number of nodes: "))
-test = gnp_random_connected_graph(test_nodes,0.00001)
+# test = gnp_random_connected_graph(test_nodes,0.00001)
+test = nx.erdos_renyi_graph(test_nodes,0.01)
 test = nx.to_dict_of_lists(test)
 no_of_hospitals = int(input("Enter the number of hospitals: "))
 test_hospitals = random.sample(range(0,test_nodes), no_of_hospitals)

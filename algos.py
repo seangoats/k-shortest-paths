@@ -34,6 +34,8 @@ def BFS(graph,hospitals,filename):
     output = open(f"{filename}.txt","w")
     output.write("Node : Shortest path to a hospital\n")
     for node,shortest_path in path.items():
+        if node not in visited:
+            shortest_path = ["#"]
         output.write(f"{node} : {shortest_path}\n")
     print(f"Output can be found in {filename}.txt")
     print("Ending...\n")
@@ -74,6 +76,8 @@ def BFS2(graph,hospitals,k,filename):
     output = open(f"{filename}.txt","w")
     output.write(f"Node : Top {k} Shortest paths to hospitals\n")
     for node,shortest_path in path.items():
+        if shortest_path[1] == shortest_path[0] == 0:
+            shortest_path = ["#"]
         output.write(f"{node} : {sorted(shortest_path)[0:k]}\n")
     print(f"Output can be found in {filename}.txt")
     print("Ending...\n")
