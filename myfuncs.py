@@ -28,28 +28,20 @@ def read_hospitals(filename):
 
 from itertools import combinations,groupby
 import networkx as nx
-import random
+from random import random
 
-def gnp_random_connected_graph(n, p):
-    """
-    Generates a random undirected graph, similarly to an Erdős-Rényi 
-    graph, but enforcing that the resulting graph is conneted
+def random_graph(n,p):
+    vertices = set([v for v in range(n)])
+    edges = set()
 
-    n: int -> number of nodes
-    0<p<1: probability of edges between nodes
-    """
-    edges = combinations(range(n), 2)
-    G = nx.Graph()
-    G.add_nodes_from(range(n))
-    if p <= 0:
-        return G
-    if p >= 1:
-        return nx.complete_graph(n, create_using=G)
-    for _, node_edges in groupby(edges, key=lambda x: x[0]):
-        node_edges = list(node_edges)
-        random_edge = random.choice(node_edges)
-        G.add_edge(*random_edge)
-        for e in node_edges:
-            if random.random() < p:
-                G.add_edge(*e)
-    return G
+    for combination in combinations(vertices,2):
+        r = random()
+        if r<p:
+            edges.add(combination)
+    
+    g = nx.Graph()
+    g.add_nodes_from(vertices)
+    g.add_edges_from(edges)
+
+    g = nx.to_dict_of_lists(g,vertices)
+    return g

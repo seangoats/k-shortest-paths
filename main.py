@@ -13,8 +13,8 @@ while True:
         if choice == 1:
             print("Testing on a randomly generated graph: ")
             test_nodes = int(input("Enter the number of nodes: "))
-            test = gnp_random_connected_graph(test_nodes,0.00001)
-            test = nx.to_dict_of_lists(test)
+            prob = float(input("Enter the probability of edges (between 0 and 1):"))
+            test = random_graph(test_nodes,prob)
 
             no_of_hospitals = int(input("Enter the number of hospitals: "))
             test_hospitals = random.sample(range(0,test_nodes), no_of_hospitals)
