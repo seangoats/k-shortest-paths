@@ -31,8 +31,11 @@ def BFS(graph,hospitals,filename):
                 
     #Writing the distance to an output file
     output = open(f"{filename}.txt","w")
+    output.write(f"hospital nodes are {hospitals}")
     output.write("Node : Shortest path to a hospital\n")
     for node,shortest_path in path.items():
+        if node not in visited:
+            shortest_path = "#"
         output.write(f"{node} : {shortest_path}\n")
     print(f"Output can be found in {filename}.txt")
 
@@ -66,13 +69,13 @@ def BFS2(graph,hospitals,k,filename):
                     queue.appendleft(neighbour)
                     path[neighbour][i] = path[vertex][i]+1
                     visited.add(neighbour)
-
-        for node in visited.difference(all_nodes):
+        for node in all_nodes.difference(visited):
             path[node][i] = "#"                    
         visited = set()
                 
     #Writing the distance to an output file
     output = open(f"{filename}.txt","w")
+    output.write(f"hospital nodes are {hospitals}")
     output.write(f"Node : Top {k} Shortest paths to hospitals\n")
     for node,shortest_path in path.items():
         shortest_path.sort(key=lambda v: (isinstance(v, str), v))
